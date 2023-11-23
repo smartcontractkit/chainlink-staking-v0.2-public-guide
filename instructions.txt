@@ -1,0 +1,126 @@
+Chainlink Staking v0.2 - Direct Staking Guide
+
+This document describes how to interact with the Chainlink v0.2 staking protocol on Ethereum mainnet directly against the contract or through etherscan.
+
+Official addresses:
+LINK token address - https://etherscan.io/token/0x514910771AF9Ca656af840dff83E8264EcF986CA
+Staking v0.1 protocol address - https://etherscan.io/address/0x3feB1e09b4bb0E7f0387CeE092a52e85797ab889
+Staking v0.2 community staking pool address - https://etherscan.io/address/0xBc10f2E862ED4502144c7d632a3459F49DFCDB5e
+Staking v0.2 node operator staking pool address - https://etherscan.io/address/0xa1d76a7ca72128541e9fcacafbda3a92ef94fdc5
+Staking v0.2 reward vault address - https://etherscan.io/address/0x996913c8c08472f584ab8834e925b06d0eb1d813
+Staking v0.2 price feed alerts controller aaddress - https://etherscan.io/address/0x27484ba119d12649be2a9854e4d3b44cc3fdbad7
+
+====================
+COMMUNITY STAKER
+====================
+
+Verify staking conditions. You can do this by going to the read contract tab in etherscan: https://etherscan.io/address/0xBc10f2E862ED4502144c7d632a3459F49DFCDB5e#readContract
+
+Check to see if the pool is opened by calling "27. isActive" - if the value is "True" then the pool is open. If it's "False" then you are unable to stake.
+
+----
+HOW TO STAKE - Migrate / Withdraw stake from v0.1
+----
+
+If the Node Operator Staking Pool is open and active, you can migrate / withdraw your stake from Staking v0.1 contract (https://etherscan.io/address/0x3feB1e09b4bb0E7f0387CeE092a52e85797ab889#writeContract) and calling "9. migrate". You will need to fill in the data(bytes) field:
+
+- To migrate your entire stake to staking v0.2, pass in "0x" or leave the field empty.
+- To migrate a portion of your stake and withdraw the rest (or fully withdraw), pass in encaded data of ({LINK in JUELS to Migrate},{LINK in JUELS to WITHDRAW}). For example
+if you plan to migrate 100 LINK and withdraw 50 LINK. You encode "100000000000000000000,50000000000000000000" as a "uint256,uin256" type to get the data value "0000000000000000000000000000000000000000000000056bc75e2d63100000000000000000000000000000000000000000000000000002b5e3af16b1880000". Online tools such as https://adibas03.github.io/online-ethereum-abi-encoder-decoder/#/encode can help you encode these values.
+
+You can verify your stake by going to https://etherscan.io/address/0xBc10f2E862ED4502144c7d632a3459F49DFCDB5e#readContract and reading "18. getStakerPrincipal"
+
+Note: If you reached your max stake limit in v0.2 or the v0.2 pool is full, your migration call will fail.
+
+----
+HOW TO STAKE - Early Access
+----
+
+If you are eligible to stake during the Early Access period, your address will have a record in https://github.com/smartcontractkit/chainlink-staking-v0.2-public-guide/blob/main/proofs.csv.
+Find your proof which is the long hex string that comes after the comma after your address. 
+
+Go to the LINK contract (https://etherscan.io/token/0x514910771AF9Ca656af840dff83E8264EcF986CA#writeContract) and call "3. transferAndCall". Pass the community staking contract value as the `_to (address)` input (0xBc10f2E862ED4502144c7d632a3459F49DFCDB5e), the LINK in juels (LINK x 10^18) in the `_value (uint256)` field, and your proof in the `_data(bytes)` field.
+
+You can verify your stake by going to https://etherscan.io/address/0xBc10f2E862ED4502144c7d632a3459F49DFCDB5e#readContract and reading "18. getStakerPrincipal"
+
+----
+HOW TO STAKE - General Access
+----
+
+Go to the LINK contract (https://etherscan.io/token/0x514910771AF9Ca656af840dff83E8264EcF986CA#writeContract) and call "3. transferAndCall". Pass the community staking contract value as the `_to (address)` input (0xBc10f2E862ED4502144c7d632a3459F49DFCDB5e), the LINK in juels (LINK x 10^18) in the `_value (uint256)` field, and `0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000` in the `_data(bytes)` field.
+
+You can verify your stake by going to https://etherscan.io/address/0xBc10f2E862ED4502144c7d632a3459F49DFCDB5e#readContract and reading "18. getStakerPrincipal"
+
+----
+HOW TO WITHDRAW
+----
+
+- Begin the unbonding period by calling "23. unbond" at https://etherscan.io/address/0xBc10f2E862ED4502144c7d632a3459F49DFCDB5e#writeContract
+- After the unbonding period (initially set at 28 days), you have the claim window (initially set at 7 days) to call "24. unstake", passing in the amount of LINK you want to unstake in JUELS
+
+====================
+NODE OPERATOR STAKER
+====================
+
+Verify staking conditions. You can do this by going to the read contract tab in etherscan: https://etherscan.io/address/0xa1d76a7ca72128541e9fcacafbda3a92ef94fdc5#readContract
+
+Check to see if the pool is opened by calling "34. isActive" - if the value is "True" then the pool is open. If it's "False" then you are unable to stake.
+
+----
+HOW TO STAKE - Migrate / Withdraw stake from v0.1
+----
+
+If the Node Operator Staking Pool is open and active, you can migrate / withdraw your stake from Staking v0.1 contract (https://etherscan.io/address/0x3feB1e09b4bb0E7f0387CeE092a52e85797ab889#writeContract) and calling "9. migrate". You will need to fill in the data(bytes) field:
+
+- To migrate your entire stake to staking v0.2, pass in "0x" or leave the field empty.
+- To migrate a portion of your stake and withdraw the rest (or fully withdraw), pass in encaded data of ({LINK in JUELS to Migrate},{LINK in JUELS to WITHDRAW}). For example
+if you plan to migrate 100 LINK and withdraw 50 LINK. You encode "100000000000000000000,50000000000000000000" as a "uint256,uin256" type to get the data value "0000000000000000000000000000000000000000000000056bc75e2d63100000000000000000000000000000000000000000000000000002b5e3af16b1880000". Online tools such as https://adibas03.github.io/online-ethereum-abi-encoder-decoder/#/encode can help you encode these values.
+
+You can verify your stake by going to https://etherscan.io/address/0xa1d76a7ca72128541e9fcacafbda3a92ef94fdc5#readContract and reading "26. getStakerPrincipal"
+
+Note: If you reached your max stake limit in v0.2 or the v0.2 pool is full, your migration call will fail.
+
+----
+HOW TO STAKE - Stake Directly to v0.2
+----
+
+Go to the LINK contract (https://etherscan.io/token/0x514910771AF9Ca656af840dff83E8264EcF986CA#writeContract) and call "3. transferAndCall". Pass the node operator staking contract value as the `_to (address)` input (0xa1d76a7ca72128541e9fcacafbda3a92ef94fdc5), the LINK in juels (LINK x 10^18) in the `_value (uint256)` field, and `0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000` in the `_data(bytes)` field.
+
+You can verify your stake by going to https://etherscan.io/address/0xa1d76a7ca72128541e9fcacafbda3a92ef94fdc5#readContract and reading "26. getStakerPrincipal"
+
+----
+HOW TO WITHDRAW
+----
+
+- Begin the unbonding period by calling "28. unbond" at https://etherscan.io/address/0xa1d76a7ca72128541e9fcacafbda3a92ef94fdc5#writeContract
+- After the unbonding period (initially set at 28 days), you have the claim window (initially set at 7 days) to call "29. unstake", passing in the amount of LINK you want to unstake in JUELS
+
+====================
+REWARDS
+====================
+
+Interactions to read reward status and to withdraw rewards are done against the reward vault contract: https://etherscan.io/address/0x996913c8c08472f584ab8834e925b06d0eb1d813
+
+----
+Multipliers
+----
+
+Check your reward multiplier (0 -> 1) by going to https://etherscan.io/address/0x996913c8c08472f584ab8834e925b06d0eb1d813#readContract and calling "10. getMultiplier", passing in your address
+
+----
+Check Rewards
+----
+
+Check how much rewards you can withdraw now by going to https://etherscan.io/address/0x996913c8c08472f584ab8834e925b06d0eb1d813#readContract and calling "12. getReward", passing in your address
+
+----
+Claim Rewards
+----
+
+To claim all claimable rewards, go to https://etherscan.io/address/0x996913c8c08472f584ab8834e925b06d0eb1d813#writeContract and call "6. claimReward"
+
+====================
+ALERTS
+====================
+
+If you believe valid alerting conditions have been met. Go to the alert controller contract at https://etherscan.io/address/0x27484ba119d12649be2a9854e4d3b44cc3fdbad7 and call "9. raiseAlert"
