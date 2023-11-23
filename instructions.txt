@@ -26,7 +26,7 @@ If the Node Operator Staking Pool is open and active, you can migrate / withdraw
 
 - To migrate your entire stake to staking v0.2, pass in "0x" or leave the field empty.
 - To migrate a portion of your stake and withdraw the rest (or fully withdraw), pass in encaded data of ({LINK in JUELS to Migrate},{LINK in JUELS to WITHDRAW}). For example
-if you plan to migrate 100 LINK and withdraw 50 LINK. You encode "100000000000000000000,50000000000000000000" as a "uint256,uin256" type to get the data value "0000000000000000000000000000000000000000000000056bc75e2d63100000000000000000000000000000000000000000000000000002b5e3af16b1880000". Online tools such as https://adibas03.github.io/online-ethereum-abi-encoder-decoder/#/encode can help you encode these values.
+if you plan to migrate 100 LINK and withdraw 50 LINK. You encode "100000000000000000000,50000000000000000000" as a "uint256,uin256" type to get the data value "0x0000000000000000000000000000000000000000000000056bc75e2d63100000000000000000000000000000000000000000000000000002b5e3af16b1880000". Online tools such as https://adibas03.github.io/online-ethereum-abi-encoder-decoder/#/encode can help you encode these values. Remember to add "0x" to the front of the result.
 
 You can verify your stake by going to https://etherscan.io/address/0xBc10f2E862ED4502144c7d632a3459F49DFCDB5e#readContract and reading "18. getStakerPrincipal"
 
@@ -74,7 +74,7 @@ If the Node Operator Staking Pool is open and active, you can migrate / withdraw
 
 - To migrate your entire stake to staking v0.2, pass in "0x" or leave the field empty.
 - To migrate a portion of your stake and withdraw the rest (or fully withdraw), pass in encaded data of ({LINK in JUELS to Migrate},{LINK in JUELS to WITHDRAW}). For example
-if you plan to migrate 100 LINK and withdraw 50 LINK. You encode "100000000000000000000,50000000000000000000" as a "uint256,uin256" type to get the data value "0000000000000000000000000000000000000000000000056bc75e2d63100000000000000000000000000000000000000000000000000002b5e3af16b1880000". Online tools such as https://adibas03.github.io/online-ethereum-abi-encoder-decoder/#/encode can help you encode these values.
+if you plan to migrate 100 LINK and withdraw 50 LINK. You encode "100000000000000000000,50000000000000000000" as a "uint256,uin256" type to get the data value "0x0000000000000000000000000000000000000000000000056bc75e2d63100000000000000000000000000000000000000000000000000002b5e3af16b1880000". Online tools such as https://adibas03.github.io/online-ethereum-abi-encoder-decoder/#/encode can help you encode these values. Remember to add "0x" to the front of the result.
 
 You can verify your stake by going to https://etherscan.io/address/0xa1d76a7ca72128541e9fcacafbda3a92ef94fdc5#readContract and reading "26. getStakerPrincipal"
 
