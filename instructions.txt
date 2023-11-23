@@ -36,7 +36,7 @@ Note: If you reached your max stake limit in v0.2 or the v0.2 pool is full, your
 HOW TO STAKE - Early Access
 ----
 
-If you are eligible to stake during the Early Access period, your address will have a record in https://github.com/smartcontractkit/chainlink-staking-v0.2-public-guide/blob/main/proofs.csv.
+If you are eligible to stake during the Early Access period, your address will have a record in https://github.com/smartcontractkit/chainlink-staking-v0.2-public-guide/blob/main/proofs.tsv.
 Find your proof which is the long hex string that comes after the comma after your address. 
 
 Go to the LINK contract (https://etherscan.io/token/0x514910771AF9Ca656af840dff83E8264EcF986CA#writeContract) and call "3. transferAndCall". Pass the community staking contract value as the `_to (address)` input (0xBc10f2E862ED4502144c7d632a3459F49DFCDB5e), the LINK in juels (LINK x 10^18) in the `_value (uint256)` field, and your proof in the `_data(bytes)` field.
