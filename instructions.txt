@@ -8,7 +8,7 @@ Staking v0.1 protocol address - https://etherscan.io/address/0x3feB1e09b4bb0E7f0
 Staking v0.2 community staking pool address - https://etherscan.io/address/0xBc10f2E862ED4502144c7d632a3459F49DFCDB5e
 Staking v0.2 node operator staking pool address - https://etherscan.io/address/0xa1d76a7ca72128541e9fcacafbda3a92ef94fdc5
 Staking v0.2 reward vault address - https://etherscan.io/address/0x996913c8c08472f584ab8834e925b06d0eb1d813
-Staking v0.2 price feed alerts controller aaddress - https://etherscan.io/address/0x27484ba119d12649be2a9854e4d3b44cc3fdbad7
+Staking v0.2 price feed alerts controller address - https://etherscan.io/address/0x27484ba119d12649be2a9854e4d3b44cc3fdbad7
 
 ====================
 COMMUNITY STAKER
@@ -22,10 +22,10 @@ Check to see if the pool is opened by calling "27. isActive" - if the value is "
 HOW TO STAKE - Migrate / Withdraw stake from v0.1
 ----
 
-If the Node Operator Staking Pool is open and active, you can migrate / withdraw your stake from Staking v0.1 contract (https://etherscan.io/address/0x3feB1e09b4bb0E7f0387CeE092a52e85797ab889#writeContract) and calling "9. migrate". You will need to fill in the data(bytes) field:
+If the Community Staking Pool is open and active, you can migrate / withdraw your stake from Staking v0.1 contract (https://etherscan.io/address/0x3feB1e09b4bb0E7f0387CeE092a52e85797ab889#writeContract) and calling "9. migrate". You will need to fill in the data(bytes) field:
 
 - To migrate your entire stake to staking v0.2, pass in "0x" or leave the field empty.
-- To migrate a portion of your stake and withdraw the rest (or fully withdraw), pass in encaded data of ({LINK in JUELS to Migrate},{LINK in JUELS to WITHDRAW}). For example
+- To migrate a portion of your stake and withdraw the rest (or fully withdraw), pass in encoded data of ({LINK in JUELS to Migrate},{LINK in JUELS to WITHDRAW}). For example
 if you plan to migrate 100 LINK and withdraw 50 LINK. You encode "100000000000000000000,50000000000000000000" as a "uint256,uin256" type to get the data value "0x0000000000000000000000000000000000000000000000056bc75e2d63100000000000000000000000000000000000000000000000000002b5e3af16b1880000". Online tools such as https://adibas03.github.io/online-ethereum-abi-encoder-decoder/#/encode can help you encode these values. Remember to add "0x" to the front of the result.
 
 You can verify your stake by going to https://etherscan.io/address/0xBc10f2E862ED4502144c7d632a3459F49DFCDB5e#readContract and reading "18. getStakerPrincipal"
@@ -73,7 +73,7 @@ HOW TO STAKE - Migrate / Withdraw stake from v0.1
 If the Node Operator Staking Pool is open and active, you can migrate / withdraw your stake from Staking v0.1 contract (https://etherscan.io/address/0x3feB1e09b4bb0E7f0387CeE092a52e85797ab889#writeContract) and calling "9. migrate". You will need to fill in the data(bytes) field:
 
 - To migrate your entire stake to staking v0.2, pass in "0x" or leave the field empty.
-- To migrate a portion of your stake and withdraw the rest (or fully withdraw), pass in encaded data of ({LINK in JUELS to Migrate},{LINK in JUELS to WITHDRAW}). For example
+- To migrate a portion of your stake and withdraw the rest (or fully withdraw), pass in encoded data of ({LINK in JUELS to Migrate},{LINK in JUELS to WITHDRAW}). For example
 if you plan to migrate 100 LINK and withdraw 50 LINK. You encode "100000000000000000000,50000000000000000000" as a "uint256,uin256" type to get the data value "0x0000000000000000000000000000000000000000000000056bc75e2d63100000000000000000000000000000000000000000000000000002b5e3af16b1880000". Online tools such as https://adibas03.github.io/online-ethereum-abi-encoder-decoder/#/encode can help you encode these values. Remember to add "0x" to the front of the result.
 
 You can verify your stake by going to https://etherscan.io/address/0xa1d76a7ca72128541e9fcacafbda3a92ef94fdc5#readContract and reading "26. getStakerPrincipal"
@@ -102,16 +102,16 @@ REWARDS
 Interactions to read reward status and to withdraw rewards are done against the reward vault contract: https://etherscan.io/address/0x996913c8c08472f584ab8834e925b06d0eb1d813
 
 ----
-Multipliers
+REWARD RAMP-UP
 ----
 
-Check your reward multiplier (0 -> 1) by going to https://etherscan.io/address/0x996913c8c08472f584ab8834e925b06d0eb1d813#readContract and calling "10. getMultiplier", passing in your address
+Check your reward ramp-up (0 -> 1) by going to https://etherscan.io/address/0x996913c8c08472f584ab8834e925b06d0eb1d813#readContract and calling "10. getMultiplier", passing in your address
 
 ----
-Check Rewards
+Check Claimable Rewards
 ----
 
-Check how much rewards you can withdraw now by going to https://etherscan.io/address/0x996913c8c08472f584ab8834e925b06d0eb1d813#readContract and calling "12. getReward", passing in your address
+Check how much claimable rewards you can withdraw now by going to https://etherscan.io/address/0x996913c8c08472f584ab8834e925b06d0eb1d813#readContract and calling "12. getReward", passing in your address
 
 ----
 Claim Rewards
