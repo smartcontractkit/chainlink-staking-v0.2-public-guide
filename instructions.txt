@@ -105,7 +105,7 @@ Interactions to read reward status and to withdraw rewards are done against the 
 REWARD RAMP-UP
 ----
 
-Check your reward ramp-up (0 -> 1) by going to https://etherscan.io/address/0x996913c8c08472f584ab8834e925b06d0eb1d813#readContract and calling "10. getMultiplier", passing in your address
+Check your reward ramp-up (0 -> 1e18, representing the 0 -> 100%) by going to https://etherscan.io/address/0x996913c8c08472f584ab8834e925b06d0eb1d813#readContract and calling "10. getMultiplier", passing in your address
 
 ----
 Check Claimable Rewards
