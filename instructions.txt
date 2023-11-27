@@ -26,15 +26,17 @@ If the Community Staking Pool is open and active, you can migrate / withdraw you
 
 - To migrate your entire stake to staking v0.2, pass in "0x" or leave the field empty.
 - To migrate a portion of your stake and withdraw the rest (or fully withdraw), pass in encoded data of ({LINK in JUELS to Migrate},{LINK in JUELS to WITHDRAW}). For example
-if you plan to migrate 100 LINK and withdraw 50 LINK. You encode "100000000000000000000,50000000000000000000" as a "uint256,uin256" type to get the data value "0x0000000000000000000000000000000000000000000000056bc75e2d63100000000000000000000000000000000000000000000000000002b5e3af16b1880000". Online tools such as https://adibas03.github.io/online-ethereum-abi-encoder-decoder/#/encode can help you encode these values. Remember to add "0x" to the front of the result.
+if you plan to migrate 100 LINK and withdraw 50 LINK. You encode "100000000000000000000,50000000000000000000" as a "uint256,uint256" type to get the data value "0x0000000000000000000000000000000000000000000000056bc75e2d63100000000000000000000000000000000000000000000000000002b5e3af16b1880000". Online tools such as https://adibas03.github.io/online-ethereum-abi-encoder-decoder/#/encode can help you encode these values. Remember to add "0x" to the front of the result.
 
 You can verify your stake by going to https://etherscan.io/address/0xBc10f2E862ED4502144c7d632a3459F49DFCDB5e#readContract and reading "18. getStakerPrincipal"
 
-Note: If you reached your max stake limit in v0.2 or the v0.2 pool is full, your migration call will fail.
+NOTE: If you reached your max stake limit in v0.2 or the v0.2 staking pool is already full, your migration call will revert.
 
 ----
 HOW TO STAKE - Early Access
 ----
+
+NOTE: Double check the staking pool contract address you are sending your LINK to so you don't accidentally transfer your LINK to the wrong location.
 
 If you are eligible to stake during the Early Access period, your address will have a record in https://github.com/smartcontractkit/chainlink-staking-v0.2-public-guide/blob/main/proofs.tsv.
 Find your proof which is the long hex string that comes after the tab after your address. Note: the above url will become accessible prior to Early Access.
@@ -50,6 +52,9 @@ You can verify your stake by going to https://etherscan.io/address/0xBc10f2E862E
 ----
 HOW TO STAKE - General Access
 ----
+
+
+NOTE: Double check the staking pool contract address you are sending your LINK to so you don't accidentally transfer your LINK to the wrong location.
 
 Go to the LINK contract (https://etherscan.io/token/0x514910771AF9Ca656af840dff83E8264EcF986CA#writeContract) and call "3. transferAndCall". Pass the community staking contract value as the `_to (address)` input (0xBc10f2E862ED4502144c7d632a3459F49DFCDB5e), the LINK in juels (LINK x 10^18) in the `_value (uint256)` field, and `0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000` in the `_data(bytes)` field.
 
@@ -82,11 +87,13 @@ if you plan to migrate 100 LINK and withdraw 50 LINK. You encode "10000000000000
 
 You can verify your stake by going to https://etherscan.io/address/0xa1d76a7ca72128541e9fcacafbda3a92ef94fdc5#readContract and reading "26. getStakerPrincipal"
 
-Note: If you reached your max stake limit in v0.2 or the v0.2 pool is full, your migration call will fail.
+NOTE: If you reached your max stake limit in v0.2 or the v0.2 staking pool is already full, your migration call will revert.
 
 ----
 HOW TO STAKE - Stake Directly to v0.2
 ----
+
+NOTE: Double check the staking pool contract address you are sending your LINK to so you don't accidentally transfer your LINK to the wrong location.
 
 Go to the LINK contract (https://etherscan.io/token/0x514910771AF9Ca656af840dff83E8264EcF986CA#writeContract) and call "3. transferAndCall". Pass the node operator staking contract value as the `_to (address)` input (0xa1d76a7ca72128541e9fcacafbda3a92ef94fdc5), the LINK in juels (LINK x 10^18) in the `_value (uint256)` field, and `0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000` in the `_data(bytes)` field.
 
