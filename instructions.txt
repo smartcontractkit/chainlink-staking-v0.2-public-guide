@@ -37,9 +37,13 @@ HOW TO STAKE - Early Access
 ----
 
 If you are eligible to stake during the Early Access period, your address will have a record in https://github.com/smartcontractkit/chainlink-staking-v0.2-public-guide/blob/main/proofs.tsv.
-Find your proof which is the long hex string that comes after the comma after your address. 
+Find your proof which is the long hex string that comes after the tab after your address. Note: the above url will become accessible prior to Early Access.
 
 Go to the LINK contract (https://etherscan.io/token/0x514910771AF9Ca656af840dff83E8264EcF986CA#writeContract) and call "3. transferAndCall". Pass the community staking contract value as the `_to (address)` input (0xBc10f2E862ED4502144c7d632a3459F49DFCDB5e), the LINK in juels (LINK x 10^18) in the `_value (uint256)` field, and your proof in the `_data(bytes)` field.
+
+For example, to stake with the address `0xb8cc1df2f93d114986cee6558e8e681824e31343`, use the proof found in `proofs.tsv`: 
+
+`0x00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000013978eee63d5743ddf4876a981167d92fb6bc80feb2d2ddb9ff3e083c3e6f1f860cde34169113cba87b76059d29edc3ec3e95c781998324b30bf014720049346337410c63eccf761ec57836c2332fcfe7cd84695b5852780d02a524382a83f11bacf514a8e29474ab2126e4914732b9670920ae161fc728eb5492f9cf0001f6f79d8aabd7748ba517b38b7274d4d32087661157d54c8f3e45a1bca366a4bf25a75b4f09f9fb602ae643ecc6f29a37042bdc204bc00de6d009e79b777bbd551c216af90ebf0ee083eaa748599d60a4071c5b3fd4d6b09a80bd01407b79086446ebca8ea7d8dfbb6df5ed2d85851fe6b4bbacb69c08d07fcf005e4a4ef74bf83b1e748c2434b1fbe764d8eca70d6c6ace33f510f2346fd8f10b2f122627e986f83faf79d5cf9e57113ba0125b9397dc1ecdb7e2c10ddaa9f0f1699a25d7f355688eadbbf1ee8093429d366a051ec1a26ed623622c0f66746827f4a2bd1423fe56841554bdb47586b0161af92821126d558bfef0a119c276edbde3f4d273824722c95049bf0eb96280e4cda0b0527efd1bebbe828c1cf5d68465fab239919305e9c0c23d239bd46144a070f1e2c402c2ab56176e1ee3d877c2b70d4b72ba8e9f631e20f1cc2a0277a7880508bdac1f594d1f155ef21c8329fbcae5f3b7a0487036d9ca75ab94ea8a05950b525723193ae09b6ad712bf56280224a37d11832e91bb568784156fdaebc12b2fe65ef2223a6a75676d101e35cade02780f62b04c7fd9c21262d77ea236f76b6af895330960d88d34d3e243b01797ddb26a93104ab10ea91b88f097c48d620932df634560def55529fa7f5f5a126a6398c8c652ad10a9287`
 
 You can verify your stake by going to https://etherscan.io/address/0xBc10f2E862ED4502144c7d632a3459F49DFCDB5e#readContract and reading "18. getStakerPrincipal"
 
