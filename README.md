@@ -10,4 +10,4 @@ Instructions and resources to stake directly against the staking contract or thr
 
 ## Get instructions on IPFS
 
-`instructions.txt` has been uploaded to IPFS: https://ipfs.io/ipfs/Qmbo1EX3gw3na7mnDHKVeQTy46n62ypEMq4QYsYMNsnbr8
+`instructions.txt` has been uploaded to IPFS: https://ipfs.io/ipfs/QmUWDupeN4D5vHNWH6dEbNuoiZz9bnbqTHw61L27RG6tE2
